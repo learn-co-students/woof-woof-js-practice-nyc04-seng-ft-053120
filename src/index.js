@@ -5,31 +5,41 @@ const dogSummaryContainerDiv = document.querySelector("#dog-summary-container");
 const dogInfoDiv = document.querySelector("#dog-info");
 
 // On page load, make a fetch to get all the pup objects, add a span with the pup's name to the dog bar
+clearDogBarDivAndFetchDogs();
 
-function fetchAllTheDogs() {
+function goodDogFilterOn() {
+  // Return true if goodDogFilter is On, false if it is not
+  if (goodDogFilterBtn.innerText === "Filter good dogs: ON") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function changeDogFilter() {
+  // Change dog filter on ON if it is OFF, and vice versa
+  if (goodDogFilterOn()) {
+    goodDogFilterBtn.innerText = "Filter good dogs: OFF"
+  } else {
+    goodDogFilterBtn.innerText = "Filter good dogs: ON"
+  }
+}
+
+function clearDogBarDivAndFetchDogs() {
+  dogBarDiv.innerHTML = "";
+
   fetch('http://localhost:3000/pups')
   .then(response => response.json())
   .then(pupObjectArr => {
-    // if(goodDogFilterBtn)
-
-
-    pupObjectArr.forEach(pupObject => turnIntoHTMLAndSlapOnDOM(pupObject))
+    let dogArr = pupObjectArr;
+    // if the goodDogFilter is on then fetch only the good dogs
+    if (goodDogFilterOn()) {
+      dogArr = pupObjectArr.filter(pupObject => pupObject.isGoodDog);
+    } 
+    dogArr.forEach(pupObject => turnIntoHTMLAndSlapOnDOM(pupObject))
   });
 }
 
-function fetchGoodDogsOnly() {
-  fetch('http://localhost:3000/pups')
-    .then(response => response.json())
-    .then(pupObjectArr => {
-      allGoodDogsArray = pupObjectArr.filter(pupObject => {
-        return pupObject.isGoodDog
-      });
-
-      allGoodDogsArray.forEach(pupObject => turnIntoHTMLAndSlapOnDOM(pupObject))
-    });
-}
-
-fetchAllTheDogs();
 
 function turnIntoHTMLAndSlapOnDOM(pupObject) {
   let pupID = pupObject.id;
@@ -77,28 +87,13 @@ function turnIntoHTMLAndSlapOnDOM(pupObject) {
         } else if (!pupIsGoodDog) {
           goodOrBadButton.innerText = "Bad Dog!"
         }
-
-        if (goodDogFilterBtn.innerText === "Filter good dogs: OFF") {
-          dogBarDiv.innerHTML = "";
-          fetchAllTheDogs()
-        } 
-        else {
-          dogBarDiv.innerHTML = "";
-          fetchGoodDogsOnly()
-        }
+        clearDogBarDivAndFetchDogs();
       });
   })
 }
 
+
 goodDogFilterBtn.addEventListener("click",(evt) => {
-  if (goodDogFilterBtn.innerText === "Filter good dogs: ON") {
-    goodDogFilterBtn.innerText = "Filter good dogs: OFF";
-    dogBarDiv.innerHTML = "";
-    fetchAllTheDogs();
-  } 
-  else {
-    goodDogFilterBtn.innerText = "Filter good dogs: ON";
-    dogBarDiv.innerHTML = "";
-    fetchGoodDogsOnly();
-  }
+  changeDogFilter();
+  clearDogBarDivAndFetchDogs();
 })
