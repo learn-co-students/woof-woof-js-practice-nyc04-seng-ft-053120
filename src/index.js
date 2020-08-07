@@ -48,11 +48,15 @@ function turnIntoHTMLAndSlapOnDOM(pupObject) {
   let pupIsGoodDog = pupObject.isGoodDog;
   let goodOrBadButton = document.createElement("button");
 
-  if (pupIsGoodDog) {
-    goodOrBadButton.innerText = "Good Dog!"
-  } else if (!pupIsGoodDog) {
-    goodOrBadButton.innerText = "Bad Dog!"
+  function changeGoodOrBadButtonText() {
+    if (pupIsGoodDog) {
+      goodOrBadButton.innerText = "Good Dog!"
+    } else if (!pupIsGoodDog) {
+      goodOrBadButton.innerText = "Bad Dog!"
+    }
   }
+  
+  changeGoodOrBadButtonText();
 
   let pupNameSpan = document.createElement("span");
       pupNameSpan.innerText = pupName;
@@ -82,11 +86,7 @@ function turnIntoHTMLAndSlapOnDOM(pupObject) {
       .then(response => response.json())
       .then(newPupObject => {
         // The button's text should change from Good to Bad or Bad to Good
-        if (pupIsGoodDog) {
-          goodOrBadButton.innerText = "Good Dog!"
-        } else if (!pupIsGoodDog) {
-          goodOrBadButton.innerText = "Bad Dog!"
-        }
+        changeGoodOrBadButtonText();
         clearDogBarDivAndFetchDogs();
       });
   })
