@@ -11,10 +11,8 @@ fetch("http://localhost:3000/pups")
   
 let convertToHTML = (singlePup) => {
     let emptySpan = document.createElement('span')
-    // emptySpan.className = "doggo-span"
     emptySpan.innerText = singlePup.name
     dogBarDiv.append(emptySpan)
-    console.log(dogBarDiv)
 
     emptySpan.addEventListener("click", (event) => {
         dogInfoDiv.innerHTML = `<img src=${singlePup.image}>
@@ -24,7 +22,7 @@ let convertToHTML = (singlePup) => {
         singlePup.isGoodDog ? doggoButton.innerText = "Good Dog!" : doggoButton.innerText = "Bad Dog!"
         dogInfoDiv.append(doggoButton)
 
-        doggoButton.addEventListener("click", (event) => {
+        doggoButton.addEventListener("click", (evt) => {
             singlePup.isGoodDog ? singlePup.isGoodDog = false : singlePup.isGoodDog = true
             fetch(`http://localhost:3000/pups/${singlePup.id}`, {
                 method: "PATCH",
