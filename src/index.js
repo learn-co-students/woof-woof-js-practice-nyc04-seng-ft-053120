@@ -70,15 +70,24 @@ const createDogDiv = (pup) => {
       .then((response) => response.json())
       .then((updatedPup) => {
         createDogDiv(updatedPup);
+        addDogBarFilter();
       });
   });
 };
 
 const isGoodDogButton = (pup, button) => {
   if (pup.isGoodDog === true) {
-    button.innerText = 'Good Dog!';
+    button.innerText = 'Make Bad Dog!';
   } else {
-    button.innerText = 'Bad Dog!';
+    button.innerText = 'Make Good Dog!';
+  }
+};
+
+const addDogBarFilter = () => {
+  if (dogFilterButton.innerText === 'Filter good dogs: ON') {
+    goodPups();
+  } else {
+    allPups();
   }
 };
 
