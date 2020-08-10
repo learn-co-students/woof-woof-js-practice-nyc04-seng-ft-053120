@@ -26,8 +26,10 @@ function renderPup(dog) {
              newButton.innerText = "Bad Dog!"
          }
          
+
          
     newSpan.addEventListener('click', (evt) => {
+        dogInfo.innerHTML = ""
         dogInfo.append(newImg, newH2, newButton)
     })
 
@@ -59,9 +61,13 @@ function renderPup(dog) {
 let filterButton = document.querySelector('#good-dog-filter')
 
 filterButton.addEventListener('click', (evt) => {
-     if (filterButton.innerText == 'Filter good dogs: OFF'){
+    
+     if (filterButton.innerText === 'Filter good dogs: OFF'){
       filterButton.innerText = 'Filter good dogs: ON'
     }
+    // else {
+    //     filterButton.innerText = 'Filter good dogs: OFF'
+    // }
    //Still have not figured out the Bonus:filter dog part of this lab     
 })
 

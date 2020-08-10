@@ -14,14 +14,14 @@ WHEN LOOKING AT PUP PUPS USER SHOULD BE ABLE TO:
 ![Showcasing the full functionality](woof-woof-demo.gif)
 
 ### STEP 1: VIEW THE DATA
-
+<!-- 
 All of the dog data is stored in the `db.json` file. You'll want to access this data
 using a json server. In order to do this, run `$ npm install -g json-server` and
 then `$ json-server --watch db.json`.
 
 This will setup the data on a server using restful routes at http://localhost:3000/pups.
 Go ahead and head to that url in your browser to view the data.
-Familiarize yourself with the attributes for each pup. Try going to `/pups/:id` to see an individual pup as well.
+Familiarize yourself with the attributes for each pup. Try going to `/pups/:id` to see an individual pup as well. -->
 
 ### STEP 2: ADD PUPS TO DOG BAR
 <!-- On the page, there is a `div` with the id of `"dog-bar"`. On page load, make a fetch
@@ -42,10 +42,10 @@ When you have the pup's information, the dog info `div` should have the followin
  ``` -->
 
 ### STEP 4: TOGGLE GOOD DOG
- When a user clicks the Good Dog/Bad Dog button, two things should happen:
+ <!-- When a user clicks the Good Dog/Bad Dog button, two things should happen:
   - The button's text should change from Good to Bad or Bad to Good
   - The corresponding pup object in the database should be updated to reflect the new isGoodDog value
-    - Please note, you can update a dog by making a PATCH request to `/pups/:id`
+    - Please note, you can update a dog by making a PATCH request to `/pups/:id` -->
 
 ### BONUS! STEP 5: FILTER GOOD DOGS 
 When a user clicks on the Filter Good Dogs button, two things should happen:
