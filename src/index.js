@@ -52,3 +52,30 @@ let renderPup = (singlePup) => {
     })
 })
 }
+
+// BONUS
+bonusButton.addEventListener("click", (evt) => {
+    let isTheButtonOn = bonusButton.innerText === "Filter good dogs: ON"
+
+    fetch(`http://localhost:3000/pups`)
+        .then(res => res.json())
+        .then((allDoggies) => {
+
+            dogBarDiv.innerHTML = ""
+
+        if (isTheButtonOn){
+            allDoggies.forEach((singlePup) => {
+                turnPuptoSpan(singlePup)
+            })
+
+            bonusButton.innerText = "Filter good dogs: OFF"
+        } else {
+            allDoggies.forEach((singlePup) => {
+                if(singlePup.isGoodDog{
+                    turnPuptoSpan(singlePup)
+                }
+            })
+            bonusButton.innerText = "Filter good dogs: ON"
+        }
+        })
+})
